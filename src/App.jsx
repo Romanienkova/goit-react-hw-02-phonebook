@@ -16,7 +16,11 @@ export class App extends Component {
     filter: '',
   };
 
-  saveContacts = contact => {
+	saveContacts = contact => {
+	  if (this.state.contacts.filter(el => el.name === this.state.name).length) {
+      return alert(`${this.state.name} is already in contacts!`);
+    }
+	 
     this.setState(prevState => {
       return { contacts: [...prevState.contacts, contact] };
     });
@@ -49,7 +53,6 @@ export class App extends Component {
         <Section title="Phonebook">
           <ContactForm
             saveContacts={this.saveContacts}
-            contacts={this.state.contacts}
           />
         </Section>
         <Section title="Contacts">
