@@ -2,13 +2,14 @@ import styled from '@emotion/styled';
 
 export const StyledContactList = styled.ul`
   padding-left: 18px;
+  list-style: disc;
+
   li {
     margin-bottom: 8px;
 
-	 span{
-
-		font-size: 18px;
-	 }
+    span {
+      font-size: 18px;
+    }
 
     button {
       margin-left: 16px;

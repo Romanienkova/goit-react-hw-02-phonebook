@@ -6,7 +6,7 @@ export const StyledForm = styled.form`
 
   border: 2px solid #c2c2c2;
   width: 320px;
-  height: 220px;
+  height: 200px;
   p {
     margin: 0;
     font-size: 18px;
@@ -33,7 +33,7 @@ export const StyledInput = styled.input`
 
 export const ButtonAdd = styled.button`
   padding: 4px;
-  margin-top: 22px;
+  margin-top: 4px;
 
   height: 32px;
   width: 120px;
