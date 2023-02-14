@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 
 import Section from './components/Section/Section';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -16,14 +17,24 @@ export class App extends Component {
     filter: '',
   };
 
-	saveContacts = contact => {
-	  if (this.state.contacts.filter(el => el.name === this.state.name).length) {
-      return alert(`${this.state.name} is already in contacts!`);
+  saveContacts = ({ name, number }) => {
+    if (
+      this.state.contacts.some(
+        el => el.name.toLowerCase().trim() === name.toLowerCase().trim()
+      )
+    ) {
+      return alert(`${name} is already in contacts!`);
+    } else {
+      const contact = {
+        id: nanoid(),
+        name,
+        number,
+      };
+
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, contact],
+      }));
     }
-	 
-    this.setState(prevState => {
-      return { contacts: [...prevState.contacts, contact] };
-    });
   };
 
   setFilter = e => {
@@ -51,9 +62,7 @@ export class App extends Component {
     return (
       <main>
         <Section title="Phonebook">
-          <ContactForm
-            saveContacts={this.saveContacts}
-          />
+          <ContactForm onSubmit={this.saveContacts} />
         </Section>
         <Section title="Contacts">
           <Filter setFilter={this.setFilter} filterState={this.state.filter} />
